@@ -35,7 +35,7 @@ const activitySchema = new mongoose.Schema({
         type: String
     },
 }, {
-    static: {
+    statics: {
         findByType: async function (type) {
             return this.find({ type });
         },

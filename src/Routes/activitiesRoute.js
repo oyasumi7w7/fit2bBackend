@@ -5,7 +5,7 @@ const activityRouter = express.Router();
 
 activityRouter.param("AcId", async (req, res, next, _id) => {
     const activity = await ActivityModel.findOne({
-        AcId: _id,
+        _id : _id,
     });
   
     if (!activity) {

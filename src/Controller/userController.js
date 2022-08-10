@@ -11,8 +11,7 @@ const signup = async (req, res, next) => {
             imgProfile: 'ab67706c0000bebbb1940ea8c5d86f564b684597',
             height: 180,
             weight: 70,
-            birthday: '1996-1-1'
-
+            birthday: '1996-01-01'
         })
         await newUser.save();
         res.send(newUser);
@@ -21,6 +20,8 @@ const signup = async (req, res, next) => {
     }
 }
 
+
 module.exports = {
-    signup
+    signup,
+
 };

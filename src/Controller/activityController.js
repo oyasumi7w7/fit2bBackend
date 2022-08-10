@@ -1,27 +1,37 @@
 const activities = require("../Models/activityModel");
+// const findByType = require('../Models/activityModel')
 
 const getAllActivities = async (req, res, next) => {
-  const allAC = await activities.find({
+  const { type } = req.query;
+  const allActivity = await activities.find({
     user_id: "62f32c1d78af39f80fa8aadd",
+    type
   });
-  res.send(allAC)
+  res.send(allActivity)
 }
 const getActivityById = async (req, res, next) => {
-
   res.send(req.activity);
 }
+// const getType = async (req, res, next) => {
+//   console.log(req.params)
+//   const singleType = await activities.findByType(req.params.type);
+//   // const singleType = await activities.find(
+//   //    req.params 
+//   // )
+//   res.send(singleType)
+// }
 
 const createActivity = async (req, res, next) => {
   try {
     const newActivity = new activities({
       // activity_id: uuidv4(),
       user_id: '62f32c1d78af39f80fa8aadd',
-      img:001,
+      img: 001,
       title: 'Teest',
       type: 'Walking',
-      date:'2022-10-8',
-      time:'17:30',
-      description:'testqqqqq'
+      date: '2022-10-08',
+      time: '17:30',
+      description: 'testqqqqq'
     });
     await newActivity.save();
     res.send(newActivity);
@@ -52,6 +62,7 @@ const removeActivityById = async (req, res, next) => {
 
 module.exports = {
   getAllActivities,
+  // getType,
   getActivityById,
   createActivity,
   removeActivityById,
