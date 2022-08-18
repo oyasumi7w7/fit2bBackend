@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 app.use(async (req, res, next) => {
     try {
-      await mongoose.connect('mongodb+srv://fit2b_admin:admin@fit2b.e1zgczo.mongodb.net/?retryWrites=true&w=majority');
+      await mongoose.connect('');
       next();
     } catch (error) {
       console.log(error);
