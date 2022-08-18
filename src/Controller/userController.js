@@ -19,9 +19,17 @@ const signup = async (req, res, next) => {
         res.status('400').send(error);
     }
 }
+const getDetail = async (req, res, next) => {
+    const { u_id } = req.query;
+    const profile = await users.findById(
+        u_id 
+      );
+      res.send(profile)
+    
+}
 
 
 module.exports = {
     signup,
-
+    getDetail
 };

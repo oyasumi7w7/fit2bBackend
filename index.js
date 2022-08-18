@@ -1,15 +1,17 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 // const activityRoutes = require('./src/Routes/activitiesRoute')
 // const port = 8080
 const app = express()
+
 app.use(express.json());
 // require("dotenv").config();
-
+app.use(cors());
 app.use(async (req, res, next) => {
     try {
-      await mongoose.connect('');
+      await mongoose.connect('mongodb+srv://fit2b_admin:admin@fit2b.e1zgczo.mongodb.net/?retryWrites=true&w=majority');
       next();
     } catch (error) {
       console.log(error);
