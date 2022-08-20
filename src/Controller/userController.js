@@ -2,17 +2,24 @@ const users = require('../Models/userModel');
 
 const signup = async (req, res, next) => {
     try {
-        const newUser = new users({
-            user_name: 'adminzz',
-            password: 123456789,
-            firstName: 'Amannn',
-            lastName: 'stickman',
-            email: 'email@email.com',
-            imgProfile: 'ab67706c0000bebbb1940ea8c5d86f564b684597',
-            height: 180,
-            weight: 70,
-            birthday: '1996-01-01'
-        })
+        
+        // console.log(req.params)
+        
+        // console.log(req.query)
+        // console.log(req.query.data)
+        const newUser = new users(req.body,)
+            // ({
+        //     user_name: req.user_name,
+        //     password: req.password,
+        //     firstName: req.firstName,
+        //     lastName: req.lastName,
+        //     email: req.email,
+        //     // imgProfile: 'ab67706c0000bebbb1940ea8c5d86f564b684597',
+        //     height: req.height,
+        //     weight: req.weight,
+        //     birthday: req.birthday
+        // })
+        
         await newUser.save();
         res.send(newUser);
     } catch (error) {
