@@ -2,10 +2,9 @@ const activities = require("../Models/activityModel");
 // const findByType = require('../Models/activityModel')
 
 const getAllActivities = async (req, res, next) => {
-  const { type } = req.query;
+  const { u_id } = req.query;
   const allActivity = await activities.find({
-    user_id: "62f32c1d78af39f80fa8aadd",
-    type
+    user_id: u_id
   });
   res.send(allActivity)
 }
