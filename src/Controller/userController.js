@@ -7,7 +7,7 @@ const signup = async (req, res, next) => {
         
         // console.log(req.query)
         // console.log(req.query.data)
-        const newUser = new users(req.body,)
+        const newUser = new users(req.body)
             // ({
         //     user_name: req.user_name,
         //     password: req.password,
