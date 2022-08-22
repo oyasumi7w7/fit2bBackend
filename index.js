@@ -1,23 +1,46 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+const dotenv = require('dotenv')
+const users = require('./src/Models/userModel');
 
+dotenv.config()
 // const activityRoutes = require('./src/Routes/activitiesRoute')
 // const port = 8080
 const app = express()
 
-app.use(express.json());
+app.use(express.json())
+
 // require("dotenv").config();
 app.use(cors());
 app.use(async (req, res, next) => {
     try {
-      await mongoose.connect('mongodb+srv://fit2b_admin:admin@fit2b.e1zgczo.mongodb.net/?retryWrites=true&w=majority');
+      await mongoose.connect(process.env.MongoDB_uri);
       next();
     } catch (error) {
       console.log(error);
       res.status(500).send();
     }
   });
+ 
+
+
+// console.log(session)
+app.post('/login', async (req, res) => {
+  const setToken = await users.findOne(
+    {user_name: req.body.user_name},{user_name:1,}
+);
+
+  res.send({
+    token: setToken._id,
+    User: setToken.user_name
+  });
+})
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/');
+});
 
 const activityRoutes = require("./src/Routes/activitiesRoute");
 app.use("/activities", activityRoutes);
