@@ -4,6 +4,7 @@ const activitySchema = new mongoose.Schema({
     user_id: {
         type: String,
         // required: true,
+
       },
     img: {
         type: String,
@@ -19,7 +20,7 @@ const activitySchema = new mongoose.Schema({
     type: {
         type: String,
         enum: [
-            'Running', 'Walking','Hiking'
+            'Running', 'Walking','Jump Rope' ,'Jogging' ,'Weight Training','Yoga'
         ],
         require: true
     },
