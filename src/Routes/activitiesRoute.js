@@ -19,7 +19,7 @@ activityRouter.param("AcId", async (req, res, next, _id) => {
 
 activityRouter.get("/", activitiesController.getAllActivities);
 activityRouter.get("/:AcId", activitiesController.getActivityById);
-activityRouter.post("/", activitiesController.createActivity);
+activityRouter.post("/create", activitiesController.createActivity);
 activityRouter.put("/:AcId", activitiesController.editActivityById);
 activityRouter.delete("/:AcId", activitiesController.removeActivityById);
 

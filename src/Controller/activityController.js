@@ -22,16 +22,21 @@ const getActivityById = async (req, res, next) => {
 
 const createActivity = async (req, res, next) => {
   try {
-    const newActivity = new activities({
-      // activity_id: uuidv4(),
-      user_id: '62f32c1d78af39f80fa8aadd',
-      img: 001,
-      title: 'Teest',
-      type: 'Walking',
-      date: '2022-10-08',
-      time: '17:30',
-      description: 'testqqqqq'
-    });
+    const newActivity = new activities(req.body
+      
+    //   {
+    //   // activity_id: uuidv4(),
+    //   user_id: '62f32c1d78af39f80fa8aadd',
+    //   img: 001,
+    //   title: 'Teest',
+    //   type: 'Walking',
+    //   date: '2022-10-08',
+    //   time: '17:30',
+    //   description: 'testqqqqq'
+    // }
+    
+    );
+    
     await newActivity.save();
     res.send(newActivity);
   } catch (error) {
