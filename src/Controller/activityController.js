@@ -9,7 +9,9 @@ const getAllActivities = async (req, res, next) => {
   res.send(allActivity)
 }
 const getActivityById = async (req, res, next) => {
-  res.send(req.activity);
+  const oneActivity = await activities.findById(
+    req.params.activity_id);
+  res.send(oneActivity);
 }
 // const getType = async (req, res, next) => {
 //   console.log(req.params)
