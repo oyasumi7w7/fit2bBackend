@@ -5,7 +5,8 @@ const getAllActivities = async (req, res, next) => {
   const { u_id } = req.query;
   const allActivity = await activities.find({
     user_id: u_id
-  });
+  }).sort({date: 1}).sort({time: 1}); /// เรียงลำดับต้องดูอีกทีว่าใส่ -1 หรือ 1
+  console.log(allActivity)
   res.send(allActivity)
 }
 const getActivityById = async (req, res, next) => {
@@ -36,7 +37,7 @@ const createActivity = async (req, res, next) => {
     // }
     
     );
-    
+
     await newActivity.save();
     res.send(newActivity);
   } catch (error) {
