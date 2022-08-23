@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const activitySchema = new mongoose.Schema({
     user_id: {
         type: String,
-        // required: true,
+        required: true,
 
       },
     img: {
