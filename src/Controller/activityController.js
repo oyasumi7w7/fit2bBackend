@@ -37,7 +37,7 @@ const getAllActivitiesByDate = async (req, res, next) => {
 const getAllActivitiesByDateType = async (req, res, next) => {
   const { startDate, type } = req.body
   // const newDate = new Date(date)
-  const allActivity = await activities.find({ type: type, date: new Date(startDate) }).limit(10)
+  const allActivity = await activities.find({ type: type, date: startDate }).limit(10)
   // .sort({date: -1}).limit(req.query.limit);
   res.send(allActivity)
 }
