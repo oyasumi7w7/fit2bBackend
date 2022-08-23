@@ -2,15 +2,16 @@ const activities = require("../Models/activityModel");
 // const findByType = require('../Models/activityModel')
 
 const getAllActivities = async (req, res, next) => {
-  const { u_id } = req.query;
+  const { user_id } = req.query;
   const allActivity = await activities.find({
     user_id: u_id
-  }).sort({date: 1}).sort({time: 1}); /// เรียงลำดับต้องดูอีกทีว่าใส่ -1 หรือ 1
-  console.log(allActivity)
+  });
   res.send(allActivity)
 }
 const getActivityById = async (req, res, next) => {
-  res.send(req.activity);
+  const oneActivity = await activities.findById(
+    req.params.activity_id);
+  res.send(oneActivity);
 }
 // const getType = async (req, res, next) => {
 //   console.log(req.params)
@@ -23,8 +24,9 @@ const getActivityById = async (req, res, next) => {
 
 const createActivity = async (req, res, next) => {
   try {
-    const newActivity = new activities(req.body
-      
+
+    const newActivity = new activities(req.body);
+
     //   {
     //   // activity_id: uuidv4(),
     //   user_id: '62f32c1d78af39f80fa8aadd',
@@ -37,7 +39,7 @@ const createActivity = async (req, res, next) => {
     // }
     
     );
-
+    
     await newActivity.save();
     res.send(newActivity);
   } catch (error) {
