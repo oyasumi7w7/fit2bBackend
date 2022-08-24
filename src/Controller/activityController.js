@@ -153,6 +153,8 @@ const removeActivityById = async (req, res, next) => {
   await req.activity.remove();
   // console.log(req.activity)
   // res.status(204).send();
+
+  res.send('Done');
 };
 
 module.exports = {
