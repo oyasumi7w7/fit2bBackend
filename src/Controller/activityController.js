@@ -110,8 +110,8 @@ const createActivity = async (req, res, next) => {
     req.body.date = new Date(req.body.date)
     const newActivity = new activities(req.body,);
     await newActivity.save();
-    // res.send(newActivity);
-    console.log(req.body.date)
+    res.send(newActivity);
+    // console.log(req.body.date)
 
 
     //   {
