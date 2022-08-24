@@ -19,6 +19,7 @@ activityRouter.param("activity_id", async (req, res, next, _id) => {
   // .post'http://localhost:8080/activities/create'
            // activities/
 activityRouter.get("/", activitiesController.getAllActivities);
+activityRouter.get("/list", activitiesController.getListActivities);
 activityRouter.get("/search/all", activitiesController.getAllActivitiesByAll);
 activityRouter.get("/search/date", activitiesController.getAllActivitiesByDate);
 activityRouter.get("/search/dateEnd", activitiesController.getAllActivitiesByDateEndDate);
