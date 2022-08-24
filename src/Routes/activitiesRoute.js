@@ -3,7 +3,7 @@ const ActivityModel = require('../Models/activityModel')
 const activitiesController = require('../Controller/activityController')
 const activityRouter = express.Router();
 
-activityRouter.param("AcId", async (req, res, next, _id) => {
+activityRouter.param("activity_id", async (req, res, next, _id) => {
     const activity = await ActivityModel.findOne({
         _id : _id,
     });
@@ -18,7 +18,11 @@ activityRouter.param("AcId", async (req, res, next, _id) => {
   });
 
 activityRouter.get("/", activitiesController.getAllActivities);
-
+activityRouter.get("/search/all", activitiesController.getAllActivitiesByAll);
+activityRouter.get("/search/date", activitiesController.getAllActivitiesByDate);
+activityRouter.get("/search/dateEnd", activitiesController.getAllActivitiesByDateEndDate);
+activityRouter.get("/search/dateType", activitiesController.getAllActivitiesByDateType);
+activityRouter.get("/search/type", activitiesController.getAllActivitiesByType);
 activityRouter.get("/:activity_id", activitiesController.getActivityById);
 activityRouter.post("/create", activitiesController.createActivity);
 activityRouter.put("/:activity_id", activitiesController.editActivityById);
