@@ -4,6 +4,16 @@ const app = require('./api/index')
 // require("dotenv").config();
 
 
+const config = require('./config');
+app.use(async (req, res, next) => {
+  try {
+      await mongoose.connect(config.mongoUri);
+      next();
+  } catch (error) {
+      console.log(error);
+      res.status(500).send();
+  }
+});
 
 const PORT = 8080;
 app.listen(PORT, () => {
