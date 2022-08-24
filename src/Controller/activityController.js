@@ -11,12 +11,21 @@ const getAllActivities = async (req, res, next) => {
   // });
   res.send(allActivity)
 }
+
+const getListActivities = async (req, res, next) => {
+  const { user_id } = req.query;
+  const allActivity = await activities.find({ user_id: user_id })
+    .sort({ date: -1 });
+
+  // ({
+  //   user_id: user_id
+  // });
+  res.send(allActivity)
+}
+
 const getAllActivitiesByAll = async (req, res, next) => {
-  const { startDate, endDate, type } = req.query
-  const start = new Date(startDate)
-  const end = new Date(endDate)
-  start.setHours(0, 0, 0, 0)
-  end.setHours(23, 59, 59, 999)
+  const { start, end, type } = req.query
+
   const allActivity = await activities.find({
     type: type,
     date: {
@@ -29,31 +38,28 @@ const getAllActivitiesByAll = async (req, res, next) => {
 }
 
 const getAllActivitiesByDate = async (req, res, next) => {
-  const { date } = req.query
-  const startDate = new Date(date)
-  const endDate = new Date(date)
+  const { start, end } = req.query
+  // const startDate = new Date(date)
+  // const endDate = new Date(date)
 
-  startDate.setHours(0, 0, 0, 0)
-  endDate.setHours(23, 59, 59, 999)
-  console.log(startDate.toISOString())
-  console.log(endDate.toISOString())
+  // startDate.setHours(0, 0, 0, 0)
+  // endDate.setHours(23, 59, 59, 999)
+  // console.log(startDate.toISOString())
+  // console.log(endDate.toISOString())
   const allActivity = await activities.find({
     date: {
-      $gt: startDate,
-      $lt: endDate
+      $gt: start,
+      $lt: end
     }
-  }).limit(10)
+  })
   // .sort({date: -1}).limit(req.query.limit);
 
   res.send(allActivity)
 }
 
 const getAllActivitiesByDateType = async (req, res, next) => {
-  const { startDate, type } = req.query
-  const start = new Date(startDate)
-  const end = new Date(startDate)
-  start.setHours(0, 0, 0, 0)
-  end.setHours(23, 59, 59, 999)
+  const { start, end, type } = req.query
+
 
   const allActivity = await activities.find({
     type: type,
@@ -61,30 +67,27 @@ const getAllActivitiesByDateType = async (req, res, next) => {
       $gt: start,
       $lt: end
     }
-  }).limit(10).sort({date: -1});
+  }).sort({ date: -1 });
 
   res.send(allActivity)
 }
 
 const getAllActivitiesByType = async (req, res, next) => {
   const { type } = req.query
-  const allActivity = await activities.find({ type: type }).limit(10)
+  const allActivity = await activities.find({ type: type })
   // .sort({date: -1}).limit(req.query.limit);
   res.send(allActivity)
 }
 
 const getAllActivitiesByDateEndDate = async (req, res, next) => {
-  const { startDate, endDate } = req.query
-  const start = new Date(startDate)
-  const end = new Date(endDate)
-  start.setHours(0, 0, 0, 0)
-  end.setHours(23, 59, 59, 999)
+  const { start, end } = req.query
+
   const allActivity = await activities.find({
     date: {
       $gt: start,
       $lt: end
     }
-  }).sort({ date: -1 }).limit(req.query.limit);
+  }).sort({ date: -1 });
   res.send(allActivity)
 }
 
@@ -154,6 +157,7 @@ const removeActivityById = async (req, res, next) => {
 
 module.exports = {
   getAllActivities,
+  getListActivities,
   // getType,
   getActivityById,
   createActivity,
