@@ -13,6 +13,7 @@ app.use(express.json())
 
 // require("dotenv").config();
 app.use(cors());
+
 app.use(async (req, res, next) => {
     try {
       await mongoose.connect(process.env.MongoDB_uri);
@@ -30,7 +31,6 @@ app.post('/login', async (req, res) => {
   const setToken = await users.findOne(
     {user_name: req.body.user_name},{user_name:1,}
 );
-
   res.send({
     token: setToken._id,
     User: setToken.user_name
